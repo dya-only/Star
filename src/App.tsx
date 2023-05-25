@@ -100,7 +100,7 @@ function App() {
                         <div className='rounded-full w-4 h-4 mr-2 bg-green-400'/> 영업중
                       </div>
                     : <div className="p-2 rounded-xl shadow-lg bg-white text-grey-400 flex justift-center items-center">
-                        <div className='rounded-full w-4 h-4 mr-2 bg-grey-400'/> 문닫음
+                        <div className='rounded-full w-4 h-4 mr-2 bg-gray-3 00'/> 문닫음
                       </div> }
                   </div>
                   <div className='text-lg w-[315px] text-slate-400 mb-8'>{ selectedMarker.vicinity }</div>
