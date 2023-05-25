@@ -55,7 +55,8 @@ function App() {
       walking: Number((Number((getDistance(Number(coords?.latitude), Number(coords?.longitude), Number(el.geometry.location.lat), Number(el.geometry.location.lng)) * 1000).toFixed(0)) / 1.3333 / 60).toFixed(0)),
       car: Number((Number((getDistance(Number(coords?.latitude), Number(coords?.longitude), Number(el.geometry.location.lat), Number(el.geometry.location.lng)) * 1000).toFixed(0)) / 6.3 / 60).toFixed(0))
     })
-
+    
+    console.log(el)
     setSelectedMarker(el)
     setSelected(true)
   }
@@ -85,12 +86,21 @@ function App() {
       : coords && isLoaded ?
         <Fragment>
           { selected === true ?
-              <div className='fixed z-50 flex justify-center items-start rounded-r-[50px] backdrop-blur-xl drop-shadow-2xl bg-white/70 w-[400px] h-screen'>
+              <div className='overflow-y-auto fixed z-50 flex justify-center items-start rounded-r-[50px] backdrop-blur-xl drop-shadow-2xl bg-white/70 w-[400px] h-screen'>
                 <div className='flex flex-col justify-start items-start'>
                   { selectedMarker.photos !== null ?
                     <img className='mt-12 -ml-[30px] w-[380px] h-[250px] object-cover drop-shadow-xl rounded-r-[50px]' src={`https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photo_reference=${selectedMarker.photos[0].photo_reference}&key=${API_KEY}`} alt='' />
                   : null }
-                  <div className='text-3xl font-bold mt-4'>{ selectedMarker.name }</div>
+                  <div className='flex justify-center items-center mt-4'>
+                    <div className='text-3xl font-bold mr-4 w-[220px]'>{ selectedMarker.name }</div>
+                    { selectedMarker.opening_hours.open_now ?
+                      <div className="p-2 rounded-xl shadow-lg bg-white text-green-400 flex justift-center items-center">
+                        <div className='rounded-full w-4 h-4 mr-2 bg-green-400'/> 영업중
+                      </div>
+                    : <div className="p-2 rounded-xl shadow-lg bg-white text-grey-400 flex justift-center items-center">
+                        <div className='rounded-full w-4 h-4 mr-2 bg-grey-400'/> 문닫음
+                      </div> }
+                  </div>
                   <div className='text-lg text-slate-400 mb-8'>{ selectedMarker.vicinity }</div>
                   
                   <div className='w-[310px] h-[80px] rounded-[30px] shadow-lg bg-white/75 flex justify-start items-center mb-4'>
@@ -109,7 +119,7 @@ function App() {
                     <div className='text-2xl font-bold'>{ selectedDist.walking }분</div>
                   </div>
 
-                  <div className='w-[310px] h-[80px] rounded-[30px] shadow-lg bg-white/75 flex justify-start items-center mb-4'>
+                  <div className='w-[310px] h-[80px] rounded-[30px] shadow-lg bg-white/75 flex justify-start items-center mb-8'>
                     <div className='rounded-[30px] bg-white/75 w-[80px] h-[80px] shadow-xl flex justify-center items-center mr-8'>
                       <FontAwesomeIcon className='w-10 h-10' icon={faCar} />
                     </div>
