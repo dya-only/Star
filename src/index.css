@@ -15,3 +15,7 @@
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
 }
+
+.star {
+  filter: invert(92%) sepia(16%) saturate(6969%) hue-rotate(343deg) brightness(101%) contrast(103%);
+}
