@@ -3,7 +3,7 @@ import axios from 'axios'
 import { useGeolocated } from 'react-geolocated'
 import { GoogleMap, useJsApiLoader, MarkerF } from '@react-google-maps/api'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faPersonWalking, faLocationDot, faMugSaucer, faArrowsLeftRight, faCar, faStar } from '@fortawesome/free-solid-svg-icons'
+import { faPersonWalking, faLocationDot, faMugSaucer, faArrowsLeftRight, faCar, faStar, faCrosshairs } from '@fortawesome/free-solid-svg-icons'
 const API_KEY = 'AIzaSyD5jd1PhKwr78AVXuvNkIufDcdMa3HfPCg'
 
 import ME from './assets/ME!!.png'
@@ -90,9 +90,9 @@ function App() {
             <div className='fixed z-30 w-screen h-screen bg-black/25 lg:hidden md:hidden' onClick={() => { setSelected(false); setSelectedMarker({})} } />
           : null }
           { selected ?
-              <div className='overflow-y-auto fixed z-50 flex justify-center items-start lg:rounded-r-[50px] md:rounded-r-[50px] lg:rounded-t-none md:rounded-t-none rounded-t-[50px] backdrop-blur-xl shadow-2xl bg-white/70 md:w-[400px] lg:w-[400px] w-screen lg:h-screen md:h-screen h-[80%] mt-[45%] lg:mt-0 md:mt-0'>
+              <div className={`${ selected ? 'animated' : '' } overflow-y-auto fixed z-50 flex justify-center items-start lg:rounded-r-[50px] md:rounded-r-[50px] lg:rounded-l-none md:rounded-l-none rounded-t-[50px] backdrop-blur-xl shadow-2xl bg-white/70 md:w-[400px] lg:w-[400px] w-screen lg:h-screen md:h-screen h-[80%] mt-[45%] lg:mt-0 md:mt-0`}>
                 <div className='flex flex-col justify-start items-center'>
-                  <img className='lg:mt-12 md:mt-12 lg:-ml-[30px] md:-ml-[30px] lg:w-[380px] md:w-[380px] w-screen h-[250px] object-cover drop-shadow-xl lg:rounded-r-[50px] md:rounded-r-[50px] rounded-[50px]' src={`https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photo_reference=${selectedMarker.photos[0].photo_reference}&key=${API_KEY}`} alt='' />
+                  <img className='lg:mt-12 md:mt-12 lg:-ml-[80px] md:-ml-[30px] lg:w-[490px] md:w-[380px] w-screen h-[250px] object-cover drop-shadow-xl lg:rounded-l-[0px] md:rounded-l-[0px] rounded-[50px]' src={`https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photo_reference=${selectedMarker.photos[0].photo_reference}&key=${API_KEY}`} alt='' />
                   <div className='flex justify-center items-center mt-4'>
                     <div className='text-3xl font-bold mr-4 w-[220px]'>{ selectedMarker.name }</div>
                     { selectedMarker.opening_hours.open_now ?
@@ -100,7 +100,7 @@ function App() {
                         <div className='rounded-full w-4 h-4 mr-2 bg-green-400'/> 영업중
                       </div>
                     : <div className="p-2 rounded-xl shadow-lg bg-white text-grey-400 flex justift-center items-center">
-                        <div className='rounded-full w-4 h-4 mr-2 bg-gray-3 00'/> 문닫음
+                        <div className='rounded-full w-4 h-4 mr-2 bg-gray-300'/> 문닫음
                       </div> }
                   </div>
                   <div className='text-lg w-[315px] text-slate-400 mb-8'>{ selectedMarker.vicinity }</div>
@@ -137,9 +137,12 @@ function App() {
           : null }
 
           <div className='fixed z-30 lg:w-[98.5%] w-[95%] flex justify-end mt-5'>
-            <button className='w-[100px] h-[50px] rounded-xl shadow-xl bg-white/75 backdrop-blur-xl flex justify-center items-center font-bold'>
+            <button className='mr-4 w-[100px] h-[50px] rounded-xl shadow-xl bg-white/75 backdrop-blur-xl flex justify-center items-center font-bold'>
               <FontAwesomeIcon className='text-yellow-400 mr-2' icon={faStar} />
               즐겨찾기
+            </button>
+            <button className='w-[50px] h-[50px] rounded-xl shadow-xl bg-white/75 backdrop-blur-xl flex justify-center items-center font-bold' onClick={() => { setSelected(false); setSelectedMarker({}) }}>
+              <FontAwesomeIcon className='text-gray-600 text-2xl' icon={faCrosshairs} />
             </button>
           </div>
 

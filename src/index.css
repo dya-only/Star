@@ -19,3 +19,33 @@
 .star {
   filter: invert(92%) sepia(16%) saturate(6969%) hue-rotate(343deg) brightness(101%) contrast(103%);
 }
+
+.animated {
+  animation: leftToRight;
+  animation-duration: .3s;
+  animation-timing-function: ease-out;
+}
+
+.unanimated {
+  animation: rightToLeft;
+  animation-duration: .3s;
+  animation-timing-function: ease-out;
+}
+
+@keyframes leftToRight {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(0%);
+  }
+}
+
+@keyframes rightToLeft {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
