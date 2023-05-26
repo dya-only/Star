@@ -11,6 +11,12 @@ export default defineConfig({
         changeOrigin: true,
         secure: false,
         ws: true
+      },
+      '/v2': {
+        target: 'https://dapi.kakao.com',
+        changeOrigin: true,
+        secure: false,
+        ws: true
       }
     }
   }

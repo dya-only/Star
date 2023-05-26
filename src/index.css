@@ -49,3 +49,10 @@
     transform: translateX(-100%);
   }
 }
+
+.custom {
+  background: white;
+  padding: 15px;
+  border-radius: 15px;
+  box-shadow: 0px 9px 36px 14px rgba(0,0,0,0.1);
+}
