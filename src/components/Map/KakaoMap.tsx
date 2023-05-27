@@ -98,11 +98,11 @@ const KakaoMap = (props: any) => {
           <div className='fixed z-30 w-screen h-screen bg-black/25 lg:hidden md:hidden' onClick={() => { setSelected(false); setSelectedMarker({})} } />
         : null }
         { selected ?
-          <div className={`${ selected ? 'animated' : '' } overflow-y-auto fixed z-50 flex justify-center items-start lg:rounded-r-[50px] md:rounded-r-[50px] lg:rounded-l-none md:rounded-l-none rounded-t-[50px] backdrop-blur-xl shadow-2xl bg-white/70 md:w-[400px] lg:w-[400px] w-screen lg:h-screen md:h-screen h-[80%] mt-[45%] lg:mt-0 md:mt-0`}>
+          <div className={`${ selected ? 'animated' : '' } overflow-y-auto fixed z-50 flex justify-center items-start lg:rounded-r-[50px] md:rounded-r-[50px] lg:rounded-l-none md:rounded-l-none rounded-t-[50px] shadow-2xl bg-white md:w-[400px] lg:w-[400px] w-screen lg:h-screen md:h-screen h-[80%] mt-[45%] lg:mt-0 md:mt-0`}>
             <div className='flex flex-col justify-start items-center'>
 
               { selectedMarker.photos ?
-                <img className='lg:mt-12 md:mt-12 lg:-ml-[80px] md:-ml-[30px] lg:w-[490px] md:w-[380px] w-screen h-[250px] object-cover drop-shadow-xl lg:rounded-l-[0px] md:rounded-l-[0px] rounded-[50px]' src={`/maps/api/place/photo?maxwidth=400&photo_reference=${selectedMarker.photos[0].photo_reference}&key=${API_KEY}`} alt='' />
+                <img className='lg:mt-12 md:mt-12 lg:-ml-[80px] md:-ml-[30px] lg:w-[490px] md:w-[380px] w-screen h-[250px] object-cover lg:drop-shadow-xl md:drop-shadow-xl drop-shadow-none lg:rounded-l-[0px] md:rounded-l-[0px] lg:rounded-b-[50px] md:rounded-b-[50px] rounded-t-[50px]' src={`/maps/api/place/photo?maxwidth=400&photo_reference=${selectedMarker.photos[0].photo_reference}&key=${API_KEY}`} alt='' />
               : <div className='lg:mt-12 md:mt-12 lg:-ml-[10px] md:-ml-[30px] lg:w-[490px] md:w-[380px] w-screen h-[250px] drop-shadow-xl lg:rounded-l-[0px] md:rounded-l-[0px] rounded-[50px] flex justify-center items-center font-bold text-2xl sm:ml-2'>이미지가 제공되지 않아요!</div> }
               
               { selectedMarker.opening_hours ?
@@ -122,8 +122,8 @@ const KakaoMap = (props: any) => {
               
               <div className='text-lg w-[315px] text-slate-400 mb-8'>{ selectedMarker.vicinity }</div>
               
-              <div className='w-[310px] h-[80px] rounded-[30px] shadow-lg bg-white/75 flex justify-start items-center mb-4'>
-                <div className='rounded-[30px] bg-white/75 w-[170px] h-[80px] shadow-xl flex justify-center items-center mr-8'>
+              <div className='w-[310px] h-[80px] rounded-[30px] shadow-lg bg-white flex justify-start items-center mb-4'>
+                <div className='rounded-[30px] bg-white w-[170px] h-[80px] shadow-xl flex justify-center items-center mr-8'>
                   <FontAwesomeIcon className='w-8 h-8 mr-4' icon={faLocationDot} />
                   <FontAwesomeIcon className='w-6 h-6 mr-4' icon={faArrowsLeftRight} />
                   <FontAwesomeIcon className='w-8 h-8' icon={faMugSaucer} />
@@ -131,21 +131,21 @@ const KakaoMap = (props: any) => {
                 <div className='text-2xl font-bold'>{ selectedDist.distance }m</div>
               </div>
 
-              <div className='w-[310px] h-[80px] rounded-[30px] shadow-lg bg-white/75 flex justify-start items-center mb-4'>
-                <div className='rounded-[30px] bg-white/75 w-[80px] h-[80px] shadow-xl flex justify-center items-center mr-8'>
+              <div className='w-[310px] h-[80px] rounded-[30px] shadow-lg bg-white flex justify-start items-center mb-4'>
+                <div className='rounded-[30px] bg-white w-[80px] h-[80px] shadow-xl flex justify-center items-center mr-8'>
                   <FontAwesomeIcon className='w-10 h-10' icon={faPersonWalking} />
                 </div>
                 <div className='text-2xl font-bold'>{ selectedDist.walking }분</div>
               </div>
 
-              <div className='w-[310px] h-[80px] rounded-[30px] shadow-lg bg-white/75 flex justify-start items-center mb-12'>
-                <div className='rounded-[30px] bg-white/75 w-[80px] h-[80px] shadow-xl flex justify-center items-center mr-8'>
+              <div className='w-[310px] h-[80px] rounded-[30px] shadow-lg bg-white flex justify-start items-center mb-12'>
+                <div className='rounded-[30px] bg-white w-[80px] h-[80px] shadow-xl flex justify-center items-center mr-8'>
                   <FontAwesomeIcon className='w-10 h-10' icon={faCar} />
                 </div>
                 <div className='text-2xl font-bold'>{ selectedDist.car }분</div>
               </div>
 
-              <button className='w-[150px] h-[50px] flex justify-center items-center font-bold p-2 shadow-xl bg-white/90 rounded-xl lg:mb-0 md:mb-0 mb-12'>
+              <button className='w-[150px] h-[50px] flex justify-center items-center font-bold p-2 shadow-xl bg-white rounded-xl lg:mb-0 md:mb-0 mb-12'>
                 <img className='star w-6 h-6 mr-2' src={EmptyStar} alt="" />
                 즐겨찾기 추가
               </button>
@@ -154,11 +154,11 @@ const KakaoMap = (props: any) => {
         : null }
 
         <div className='fixed z-30 lg:w-[98.5%] w-[95%] flex justify-end mt-5'>
-          <button className='mr-4 w-[100px] h-[50px] rounded-xl shadow-xl bg-white/75 backdrop-blur-xl flex justify-center items-center font-bold'>
+          <button className='mr-4 w-[100px] h-[50px] rounded-xl shadow-xl bg-white flex justify-center items-center font-bold'>
             <FontAwesomeIcon className='text-yellow-400 mr-2' icon={faStar} />
             즐겨찾기
           </button>
-          <button className='w-[50px] h-[50px] rounded-xl shadow-xl bg-white/75 backdrop-blur-xl flex justify-center items-center font-bold' onClick={() => { setSelected(false); setSelectedMarker({}) }}>
+          <button className='w-[50px] h-[50px] rounded-xl shadow-xl bg-white flex justify-center items-center font-bold' onClick={() => { setSelected(false); setSelectedMarker({}) }}>
             <FontAwesomeIcon className='text-gray-600 text-2xl' icon={faCrosshairs} />
           </button>
         </div>
