@@ -52,7 +52,8 @@
 
 .custom {
   background: white;
+  border: 0.2px rgb(161, 161, 161) solid;
   padding: 15px;
   border-radius: 15px;
-  box-shadow: 0px 9px 36px 14px rgba(0,0,0,0.1);
+  /* box-shadow: 0px 9px 36px 14px rgba(0,0,0,0.1); */
 }

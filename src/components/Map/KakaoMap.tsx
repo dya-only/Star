@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPersonWalking, faLocationDot, faMugSaucer, faArrowsLeftRight, faCar, faStar, faCrosshairs } from '@fortawesome/free-solid-svg-icons'
 const API_KEY = 'AIzaSyD5jd1PhKwr78AVXuvNkIufDcdMa3HfPCg'
 
-// import ME from './assets/ME!!.png'
+import ME from '../../assets/ME!!.png'
 // import CAFE from './assets/cafe.png'
 import CAFE from '../../assets/marker.png'
 // import Star from './assets/star-solid.svg'
@@ -57,6 +57,13 @@ const KakaoMap = (props: any) => {
     const kakaoMap = new kakao.maps.Map(container, options)
     setMap(kakaoMap)
 
+    // Current my location
+    new kakao.maps.Marker({
+      map: kakaoMap,
+      position: new kakao.maps.LatLng(props.coords.latitude, props.coords.longitude),
+      image: new kakao.maps.MarkerImage(ME, new kakao.maps.Size(43, 45)),
+    })
+
     await cafe.forEach((el: { y: number; x: number; place_name: string }) => {
       const marker = new kakao.maps.Marker({
         map: kakaoMap,
@@ -98,32 +105,32 @@ const KakaoMap = (props: any) => {
           <div className='fixed z-30 w-screen h-screen bg-black/25 lg:hidden md:hidden' onClick={() => { setSelected(false); setSelectedMarker({})} } />
         : null }
         { selected ?
-          <div className={`${ selected ? 'animated' : '' } overflow-y-auto fixed z-50 flex justify-center items-start lg:rounded-r-[50px] md:rounded-r-[50px] lg:rounded-l-none md:rounded-l-none rounded-t-[50px] shadow-2xl bg-white md:w-[400px] lg:w-[400px] w-screen lg:h-screen md:h-screen h-[80%] mt-[45%] lg:mt-0 md:mt-0`}>
+          <div className={`${ selected ? 'animated' : '' } overflow-y-auto fixed z-50 flex justify-center items-start shadow-2xl bg-white md:w-[400px] lg:w-[400px] w-screen lg:h-screen md:h-screen h-[80%] mt-[45%] lg:mt-0 md:mt-0`}>
             <div className='flex flex-col justify-start items-center'>
 
               { selectedMarker.photos ?
-                <img className='lg:mt-12 md:mt-12 lg:-ml-[80px] md:-ml-[30px] lg:w-[490px] md:w-[380px] w-screen h-[250px] object-cover lg:drop-shadow-xl md:drop-shadow-xl drop-shadow-none lg:rounded-l-[0px] md:rounded-l-[0px] lg:rounded-b-[50px] md:rounded-b-[50px] rounded-t-[50px]' src={`/maps/api/place/photo?maxwidth=400&photo_reference=${selectedMarker.photos[0].photo_reference}&key=${API_KEY}`} alt='' />
+                <img className='w-screen h-[250px] object-cover' src={`/maps/api/place/photo?maxwidth=400&photo_reference=${selectedMarker.photos[0].photo_reference}&key=${API_KEY}`} alt='' />
               : <div className='lg:mt-12 md:mt-12 lg:-ml-[10px] md:-ml-[30px] lg:w-[490px] md:w-[380px] w-screen h-[250px] drop-shadow-xl lg:rounded-l-[0px] md:rounded-l-[0px] rounded-[50px] flex justify-center items-center font-bold text-2xl sm:ml-2'>이미지가 제공되지 않아요!</div> }
               
               { selectedMarker.opening_hours ?
                 <div className='flex justify-center items-center mt-4'>
                   <div className='text-3xl font-bold mr-4 w-[220px]'>{ kakaoInfo.place_name }</div>
                   { selectedMarker.opening_hours.open_now ?
-                    <div className="p-2 rounded-xl shadow-lg bg-white text-green-400 flex justift-center items-center">
+                    <div className="p-2 rounded-xl bg-white text-green-400 flex justift-center items-center">
                       <div className='rounded-full w-4 h-4 mr-2 bg-green-400'/> 영업중
                     </div>
-                  : <div className="p-2 rounded-xl shadow-lg bg-white text-grey-400 flex justift-center items-center">
+                  : <div className="p-2 rounded-xl bg-white text-grey-400 flex justift-center items-center">
                       <div className='rounded-full w-4 h-4 mr-2 bg-gray-300'/> 문닫음
                     </div> }
                 </div>
-              : <div className="p-2 rounded-xl shadow-lg bg-white text-grey-400 flex justift-center items-center">
+              : <div className="p-2 rounded-xl bg-white text-grey-400 flex justift-center items-center">
                   <div className='rounded-full w-4 h-4 mr-2 bg-red-300'/> 제공 안됨
                 </div> }
               
               <div className='text-lg w-[315px] text-slate-400 mb-8'>{ selectedMarker.vicinity }</div>
               
-              <div className='w-[310px] h-[80px] rounded-[30px] shadow-lg bg-white flex justify-start items-center mb-4'>
-                <div className='rounded-[30px] bg-white w-[170px] h-[80px] shadow-xl flex justify-center items-center mr-8'>
+              <div className='w-[310px] h-[80px] rounded-2xl bg-white border-[0.2px] border-gray-300 flex justify-start items-center mb-4'>
+                <div className='rounded-[30px] w-[170px] h-[80px] flex justify-center items-center mr-8'>
                   <FontAwesomeIcon className='w-8 h-8 mr-4' icon={faLocationDot} />
                   <FontAwesomeIcon className='w-6 h-6 mr-4' icon={faArrowsLeftRight} />
                   <FontAwesomeIcon className='w-8 h-8' icon={faMugSaucer} />
@@ -131,21 +138,21 @@ const KakaoMap = (props: any) => {
                 <div className='text-2xl font-bold'>{ selectedDist.distance }m</div>
               </div>
 
-              <div className='w-[310px] h-[80px] rounded-[30px] shadow-lg bg-white flex justify-start items-center mb-4'>
-                <div className='rounded-[30px] bg-white w-[80px] h-[80px] shadow-xl flex justify-center items-center mr-8'>
+              <div className='w-[310px] h-[80px] rounded-2xl bg-white border-[0.2px] border-gray-300 flex justify-start items-center mb-4'>
+                <div className='rounded-[30px] w-[80px] h-[80px] flex justify-center items-center mr-8'>
                   <FontAwesomeIcon className='w-10 h-10' icon={faPersonWalking} />
                 </div>
                 <div className='text-2xl font-bold'>{ selectedDist.walking }분</div>
               </div>
 
-              <div className='w-[310px] h-[80px] rounded-[30px] shadow-lg bg-white flex justify-start items-center mb-12'>
-                <div className='rounded-[30px] bg-white w-[80px] h-[80px] shadow-xl flex justify-center items-center mr-8'>
+              <div className='w-[310px] h-[80px] rounded-2xl bg-white border-[0.2px] border-gray-300 flex justify-start items-center mb-12'>
+                <div className='rounded-[30px] w-[80px] h-[80px] flex justify-center items-center mr-8'>
                   <FontAwesomeIcon className='w-10 h-10' icon={faCar} />
                 </div>
                 <div className='text-2xl font-bold'>{ selectedDist.car }분</div>
               </div>
 
-              <button className='w-[150px] h-[50px] flex justify-center items-center font-bold p-2 shadow-xl bg-white rounded-xl lg:mb-0 md:mb-0 mb-12'>
+              <button className='w-[150px] h-[50px] flex justify-center items-center font-bold p-2 bg-white border-[0.2px] border-gray-300 rounded-xl lg:mb-0 md:mb-0 mb-12'>
                 <img className='star w-6 h-6 mr-2' src={EmptyStar} alt="" />
                 즐겨찾기 추가
               </button>
