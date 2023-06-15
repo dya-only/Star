@@ -6,15 +6,11 @@ import { faPersonWalking, faLocationDot, faMugSaucer, faArrowsLeftRight, faCar, 
 const API_KEY = 'AIzaSyD5jd1PhKwr78AVXuvNkIufDcdMa3HfPCg'
 
 import ME from '../../assets/ME!!.png'
-// import CAFE from './assets/cafe.png'
 import CAFE from '../../assets/marker.png'
-// import Star from './assets/star-solid.svg'
 import EmptyStar from '../../assets/star-regular.svg'
 
 const KakaoMap = (props: any) => {
   const [map, setMap] = useState(null as any)
-  const [cafe, setCafe] = useState([] as any)
-  const [cafeStatus, setCafeStatus] = useState(false)
   const [selected, setSelected] = useState(false)
   const [selectedMarker, setSelectedMarker] = useState({} as any)
   const [kakaoInfo, setKakaoInfo] = useState({} as any)
@@ -56,6 +52,8 @@ const KakaoMap = (props: any) => {
     const options = { center: new kakao.maps.LatLng(props.coords.latitude, props.coords.longitude), level: 4 }
     const kakaoMap = new kakao.maps.Map(container, options)
     setMap(kakaoMap)
+    console.log(map)
+    
 
     // Current my location
     new kakao.maps.Marker({
