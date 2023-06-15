@@ -10,11 +10,11 @@ function App() {
   })
 
   return (
-      !isGeolocationAvailable ? '사용자의 위치 정보를 가져올 수 없어요.' :
-      ! isGeolocationEnabled ? '사용자의 위치 정보를 가져올 수 없어요.' :
+      !isGeolocationAvailable ? <div>사용자의 위치 정보를 가져올 수 없어요.</div> :
+      ! isGeolocationEnabled ? <div>사용자의 위치 정보를 가져올 수 없어요.</div> :
       coords ?
         <KakaoMap coords={coords} />
-      : '사용자의 위치 정보를 가져올 수 없어요.'
+      : <div>사용자의 위치 정보를 가져올 수 없어요.</div>
   )
 }
 
